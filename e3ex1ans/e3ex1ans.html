@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective 3 Workbook - Teaching Script</title>
+    
+    <!-- 1. Configure MathJax to recognize $ signs and handle errors -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <!-- 2. Load MathJax -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .page-indicator {
+            font-weight: bold;
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden; /* Prevent body scroll */
+        }
+
+        /* Image Panel (Left) */
+        .image-panel {
+            flex: 1;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-right: 4px solid #ddd;
+        }
+
+        .image-panel img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        /* Script Panel (Right) */
+        .script-panel {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background-color: white;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .script-content h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .script-content strong {
+            color: #d35400; /* Orange for Key Terms */
+        }
+
+        .script-content .note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffecb5;
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        /* Navigation Controls */
+        .controls {
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .image-panel {
+                flex: 0 0 40%;
+            }
+            .script-panel {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Elective 3 Workbook Solutions</h1>
+    <span class="page-indicator">Page <span id="current-page-num">1</span> of 5</span>
+</header>
+
+<div class="main-container">
+    <div class="image-panel">
+        <img id="slide-image" src="" alt="Workbook Screenshot">
+    </div>
+    
+    <div class="script-panel">
+        <div id="script-content" class="script-content">
+            <!-- Content will be injected here via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    <button id="prev-btn" onclick="changePage(-1)">&#8592; Previous Page</button>
+    <button id="next-btn" onclick="changePage(1)">Next Page &#8594;</button>
+</div>
+
+<script>
+    // DATA: The content for each page
+    // IMPORTANT: All LaTeX backslashes (\) are double-escaped (\\) 
+    const slides = [
+        {
+            image: "投影片1.jpg", 
+            title: "Page 1: Title & Introduction",
+            content: `
+                <p>各位同學大家好，歡迎來到 <strong>Elective 3 – Workbook</strong> 的解題環節。今天我們要專注於 <strong>Exercise 1</strong> 的答案解析。</p>
+                <p>這一章的重點在於各種照明指標的計算與應用。在開始之前，請大家準備好計算機，並回想一下我們學過的幾個重要公式，特別是關於：</p>
+                <ul>
+                    <li><strong>Luminous flux</strong> (光通量)</li>
+                    <li><strong>Illuminance</strong> (照度)</li>
+                    <li><strong>Efficacy</strong> (光視效能)</li>
+                </ul>
+                <p>好，讓我們翻到第二頁，直接看第一題。</p>
+                <div class="note">Teacher Note: Ensure students have their calculators ready.</div>
+            `
+        },
+        {
+            image: "投影片2.jpg",
+            title: "Page 2: Example 1.1 – Lamp Selection & Cost",
+            content: `
+                <p>我們看 <strong>Example 1.1</strong>。題目給了三種燈泡 P、Q、R，並列出了它們的 <strong>Power rating</strong> (額定功率)、<strong>Price</strong> (價格) 和 <strong>Lifetime</strong> (壽命)。題目提到它們有相似的 <strong>Luminous flux output</strong>。</p>
+
+                <h3>(a) Which one is most probably an LED lamp?</h3>
+                <p>這題考的是常識與特性。我們知道 LED 的特點是省電且壽命長。觀察表格，Lamp P 的 <strong>Power rating</strong> 只有 4 W (最小)，且 <strong>Lifetime</strong> 長達 25,000 hours。所以，答案是 <strong>Lamp P</strong>。</p>
+
+                <h3>(b) Rank the lamps in descending order of efficacy.</h3>
+                <p>Recall the formula: $$ \\text{Efficacy} = \\frac{\\text{Luminous flux}}{\\text{Power rating}} $$</p>
+                <p>因為大家的 <strong>Luminous flux</strong> 差不多 (Similar)，所以 <strong>Power rating</strong> 越小，<strong>Efficacy</strong> 越高。</p>
+                <p>Order: <strong>P > Q > R</strong></p>
+
+                <h3>(c) Cost Calculation (10,000 hours)</h3>
+                <p>Cost = Lamp Cost + Electricity Cost. <br> Electricity Cost Formula: $$ \\text{Power (kW)} \\times \\text{Time (h)} \\times \\text{Cost per unit} $$</p>
+                
+                <ul>
+                    <li><strong>Lamp P:</strong> 壽命 25,000 h (足夠用)。Need 1 lamp.
+                        $$ Cost = \\$100 + \\left( \\frac{4}{1000} \\times 10000 \\times 1.2 \\right) = \\$100 + \\$48 = \\$148 $$
+                    </li>
+                    <li><strong>Lamp Q:</strong> 壽命 9,000 h (不夠用)。Need 2 lamps.
+                        $$ Cost = \\$35 \\times 2 + \\left( \\frac{11}{1000} \\times 10000 \\times 1.2 \\right) = \\$70 + \\$132 = \\$202 $$
+                    </li>
+                    <li><strong>Lamp R:</strong> 壽命 1,000 h. Need 10 lamps.
+                        $$ Cost = \\$8 \\times 10 + \\left( \\frac{40}{1000} \\times 10000 \\times 1.2 \\right) = \\$80 + \\$480 = \\$560 $$
+                    </li>
+                </ul>
+                <p>Recommendation: <strong>Lamp P</strong> (Lowest cost).</p>
+            `
+        },
+        {
+            image: "投影片3.jpg",
+            title: "Page 3: Example 1.2 – Illuminance & Distance",
+            content: `
+                <p>接著看 <strong>Example 1.2</strong>。Bruce 在距離 20 米處用 <strong>Lux meter</strong> 測量 <strong>Illuminance</strong>。</p>
+
+                <h3>(a) Orientation of the sensor</h3>
+                <p>要測量到 Maximum reading，光線必須垂直射入感應器。</p>
+                <p>Answer: The sensor should face directly towards the light source (or be <strong>normal</strong> to the light beam).</p>
+
+                <h3>(b) Find the luminous flux</h3>
+                <p>利用 <strong>Inverse Square Law</strong> (假設為 point source 向四周發光):</p>
+                $$ E = \\frac{\\Phi}{4\\pi r^2} $$
+                <p>Given $ E = 160 \\text{ lx} $, $ r = 20 \\text{ m} $.</p>
+                $$ 160 = \\frac{\\Phi}{4\\pi (20)^2} $$
+                $$ \\Phi = 160 \\times 4\\pi \\times 400 \\approx 8.04 \\times 10^5 \\text{ lm} $$
+
+                <h3>(c) Distance changes to 10 m</h3>
+                <p>Bruce 移至 10 m 處，距離變為原來的 $ \\frac{1}{2} $。</p>
+                <p>根據 $$ E \\propto \\frac{1}{r^2} $$，當距離減半，<strong>Illuminance</strong> 變為 $ 2^2 = 4 $ 倍。</p>
+                <p>Reading = $ 160 \\times 4 = 640 \\text{ lx} $.</p>
+            `
+        },
+        {
+            image: "投影片4.jpg",
+            title: "Page 4: Example 1.3 – Room Lighting & Reflection",
+            content: `
+                <p><strong>Example 1.3</strong>: Storeroom scenario with an Energy Label.</p>
+
+                <h3>(a) Find the luminous flux</h3>
+                <p>從標籤讀取：<strong>Efficacy</strong> = 53 lm/W, <strong>Power</strong> = 11 W。</p>
+                $$ \\Phi = \\text{Power} \\times \\text{Efficacy} = 11 \\times 53 = 583 \\text{ lm} $$
+
+                <h3>(b) Illuminance on P and Q</h3>
+                <p><strong>Point P (Center, directly below):</strong> $ r = 2.5 \\text{ m} $</p>
+                $$ E_P = \\frac{\\Phi}{4\\pi r^2} = \\frac{583}{4\\pi (2.5)^2} \\approx 7.42 \\text{ lx} $$
+                
+                <p><strong>Point Q (Next to wall):</strong> 計算幾何。</p>
+                <p>Slant distance $ r_Q = \\sqrt{2.5^2 + 1^2} \\approx 2.69 \\text{ m} $. <br> Cosine factor $ \\cos \\theta = \\frac{2.5}{2.69} $.</p>
+                $$ E_Q = \\frac{\\Phi \\cos \\theta}{4\\pi r_Q^2} = \\frac{583}{4\\pi (2.69)^2} \\times \\frac{2.5}{2.69} \\approx 5.94 \\text{ lx} $$
+
+                <h3>(c) Effect of white walls</h3>
+                <p>測量值比計算值大。如果牆壁漆成白色，數值會更大。為什麼？</p>
+                <p>關鍵詞是 <strong>Reflection</strong> (反射)。黑色牆壁吸收光 (Absorb)，白色牆壁會產生 <strong>Diffuse reflection</strong>，反射光疊加後增加了 P 和 Q 點的 <strong>Illuminance</strong>。</p>
+            `
+        },
+        {
+            image: "投影片5.jpg",
+            title: "Page 5: Example 1.4 – Optimization",
+            content: `
+                <p><strong>Example 1.4</strong>: Daisy 的圓桌問題。</p>
+
+                <h3>(a) Which area is less illuminated?</h3>
+                <p><strong>Q is less illuminated</strong> 因為它距離光源較遠且光線傾斜。</p>
+                <p>要滿足 "Every part > 25 lx"，只需確保最暗點 Q > 25 lx。</p>
+                <p>幾何: $ h = 1.2 $, $ d = 1 $, $ r = \\sqrt{1.2^2 + 1^2} = \\sqrt{2.44} \\approx 1.562 \\text{ m} $.</p>
+                $$ E_Q = \\frac{\\Phi \\cos \\theta}{4\\pi r^2} \\Rightarrow 25 = \\frac{\\Phi}{4\\pi (2.44)} \\times \\frac{1.2}{\\sqrt{2.44}} $$
+                <p>Solving for flux: $$ \\Phi = \\frac{25 \\times 4\\pi \\times (2.44)^{1.5}}{1.2} \\approx 997.8 \\text{ lm} $$</p>
+
+                <h3>(b) Total electricity cost (1 year)</h3>
+                <p>Using $ \\Phi = 997.8 \\text{ lm} $:</p>
+                <ol>
+                    <li><strong>Power:</strong> $ P = \\frac{997.8}{60} \\approx 16.63 \\text{ W} = 0.01663 \\text{ kW} $</li>
+                    <li><strong>Energy:</strong> $ E = 0.01663 \\text{ kW} \\times 5 \\text{ h} \\times 365 \\approx 30.35 \\text{ kW h} $</li>
+                    <li><strong>Cost:</strong> $ 30.35 \\times \\$1.1 \\approx \\$33.4 $</li>
+                </ol>
+
+                <h3>(c) Increase illuminance (Cost fixed)</h3>
+                <p>既然 <strong>Electricity cost</strong> 固定 (Power 固定)，我們不能換大瓦數燈泡。建議：</p>
+                <ol>
+                    <li><strong>Lower the lamp:</strong> 減少距離 $ r $。</li>
+                    <li><strong>Add a reflector:</strong> 加裝反射罩，將向上的光反射回來集中向下。</li>
+                </ol>
+            `
+        }
+    ];
+
+    // LOGIC: State management
+    let currentIndex = 0;
+
+    const imgElement = document.getElementById('slide-image');
+    const contentElement = document.getElementById('script-content');
+    const pageNumElement = document.getElementById('current-page-num');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    function loadPage(index) {
+        // Update content
+        const data = slides[index];
+        
+        // Use a placeholder if user hasn't put images yet, otherwise use filename
+        imgElement.src = data.image; 
+        imgElement.onerror = function() {
+            this.src = "https://placehold.co/600x400?text=Image+Not+Found+Check+File+Name";
+        };
+
+        contentElement.innerHTML = `<h2>${data.title}</h2>` + data.content;
+        pageNumElement.innerText = index + 1;
+
+        // Button states
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === slides.length - 1;
+
+        // Re-render MathJax
+        if (window.MathJax) {
+            MathJax.typesetPromise([contentElement]).then(() => {
+                // MathJax rendered
+            }).catch((err) => console.log(err));
+        }
+    }
+
+    function changePage(direction) {
+        currentIndex += direction;
+        // Boundary checks
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex >= slides.length) currentIndex = slides.length - 1;
+        
+        loadPage(currentIndex);
+    }
+
+    // Initial Load
+    loadPage(0);
+
+</script>
+
+</body>
+</html>
