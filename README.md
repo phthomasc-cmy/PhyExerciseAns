@@ -36,7 +36,7 @@
     <h1>Exercise</h1>
 
     <div class="link-box">
-        <a href="e3ex2ans.html">➜ Elective 3 Workbook Ex.2 Ans</a>
+        <a href="e3_ex2_ans/e3ex2ans.html">➜ Elective 3 Workbook Ex.2 Ans</a>
     </div>
 
 </body>
