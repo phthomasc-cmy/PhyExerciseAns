@@ -147,57 +147,57 @@
         // Use double backslashes (\\) for LaTeX commands in JavaScript strings
         const pages = [
             {
-                img: "投影片1.jpg", 
+                img: "投影片1.JPG", 
                 title: "Cover Page",
                 script: "各位同學大家好，今日我們會看 Elective 3 Workbook 的練習題答案。\n\n我們主要會集中討論 **Energy Efficiency** 相關的計算題。請大家打開 Workbook 準備對答案，我們會由 Ex. 1 開始。"
             },
             {
-                img: "投影片2.jpg", 
+                img: "投影片2.JPG", 
                 title: "Example 2.1 - Question",
                 script: "首先看 **Example 2.1** (p.40)。這條題目比較了兩種煮食工具：**Electric hotplate** (電熱板) 和 **Induction cooker** (電磁爐)。\n\n留意表格提供的數據：\n1. **Power rating**：分別是 1600 W 和 1300 W。\n2. **End-use energy efficiency**：電熱板只有 55%，而電磁爐有 85%。\n\n題目要求我們找出將 2 kg 的水，由 $25^\\circ\\text{C}$ 煮沸 (boil) 需要多少時間 (Time)。\n記得水的 **Specific heat capacity** 是 $4200 \\text{ J kg}^{-1} \\text{ }^\\circ\\text{C}^{-1}$。"
             },
             {
-                img: "投影片3.jpg", 
+                img: "投影片3.JPG", 
                 title: "Example 2.1 - Solution",
                 script: "我們來看看計算步驟。\n\n第一步，我們要先計算將水煮沸所需的 **Energy required** ($E$)。\n運用公式 $E = mc\\Delta T$：\n$$E = 2 \\times 4200 \\times (100 - 25) = 630,000 \\text{ J}$$\n\n第二步，利用 **Efficiency** 的概念找出時間。\n\n對於 **Electric hotplate**：\n輸入的能量是 $P \\times t$，但只有 $\\eta$ (efficiency) 的部分被水吸收。\n方程式：$P_1 \\eta_1 t_1 = E$\n$$1600 \\times 0.55 \\times t_1 = 630,000$$\n解方程後，得出 $t_1 \\approx 716 \\text{ s}$。\n\n對於 **Induction cooker**：\n用同樣的方法：$P_2 \\eta_2 t_2 = E$\n$$1300 \\times 0.85 \\times t_2 = 630,000$$\n得出 $t_2 \\approx 570 \\text{ s}$。\n\n可以看到 **Induction cooker** 雖然 **Power rating** 較低，但因為 **Efficiency** 高，所以煮得更快。"
             },
             {
-                img: "投影片4.jpg", 
+                img: "投影片4.JPG", 
                 title: "Example 2.2 - Question",
                 script: "接著是 **Example 2.2** (p.48)，關於冷氣機的題目。\n\n這裡有一部冷氣機，它的 **Cooling capacity** 是 1340 W。每天運作 12 小時。\n題目給了我們一個月的電費是 \\$180，而每度電 (**per kW h**) 的價錢是 \\$1.2。\n\n我們的目標是找出這部冷氣機的 **Coefficient of Performance (COP)**。"
             },
             {
-                img: "投影片5.jpg", 
+                img: "投影片5.JPG", 
                 title: "Example 2.2 - Solution",
                 script: "要計算 **COP**，我們需要知道 **Cooling capacity** 和 **Input electrical power**。\n\n1. 首先找用電量：\n$$\\text{Electrical energy} = \\frac{\\text{Total Cost}}{\\text{Cost per unit}} = \\frac{180}{1.2} = 150 \\text{ kW h}$$\n\n2. 接著找 **Input electrical power** ($P_{\\text{in}}$)：\n我們知道 Energy = Power $\\times$ Time。\n$$P_{\\text{in}} \\times (30 \\text{ days} \\times 12 \\text{ hours}) = 150$$\n$$P_{\\text{in}} = 0.4167 \\text{ kW}$$\n\n3. 最後計算 **COP**：\n公式是 $\\text{COP} = \\frac{\\text{Cooling capacity}}{\\text{Input electrical power}}$\n留意單位要一致，這裡我們將 $P_{\\text{in}}$ 轉回 W。\n$$\\text{COP} = \\frac{1340}{0.4167 \\times 1000} \\approx 3.22$$\n\n所以這部冷氣機的 **COP** 是 3.22。"
             },
             {
-                img: "投影片6.jpg", 
+                img: "投影片6.JPG", 
                 title: "Example 2.3 - Question",
                 script: "來到 **Example 2.3** (p.48)。\n\n這部冷氣機的 **Cooling capacity** 是 1300 W，房間尺寸是 $5 \\text{ m} \\times 5.5 \\text{ m} \\times 2.5 \\text{ m}$。\n\n題目有三個部分：\n(a) 估算房內空氣的 **Mass**。已知 **Density of air**。\n(b) 如果冷氣開了 5 分鐘，估算 **Temperature drop**。已知空氣的 **Specific heat capacity**。\n(c) 評論實際的 **Temperature drop** 會比 (b) 部分估算的數值大還是小，並解釋原因。"
             },
             {
-                img: "投影片7.jpg", 
+                img: "投影片7.JPG", 
                 title: "Example 2.3 - Solution",
                 script: "看看解答：\n\n(a) **Mass** 的計算很直接：\n$\\text{Mass} = \\text{Density} \\times \\text{Volume}$\n$$M = 1.184 \\times (5 \\times 5.5 \\times 2.5) = 81.4 \\text{ kg}$$\n\n(b) 計算 **Temperature drop** ($\\Delta T$)：\n先算冷氣機移走了多少熱能 ($E$)：\n$$E = \\text{Time} \\times \\text{Cooling capacity} = (5 \\times 60) \\times 1300 = 3.9 \\times 10^5 \\text{ J}$$\n再用 $E = mc\\Delta T$：\n$$3.9 \\times 10^5 = 81.4 \\times 1000 \\times \\Delta T$$\n$$\\Delta T = 4.79 \\text{ } ^\\circ\\text{C}$$\n\n(c) 實際的溫度下降會 **Smaller** (較小)。\n原因是我們估算時只考慮了空氣，但實際上冷氣機還需要移除牆壁 (**Walls**) 和傢俱 (**Furniture**) 的熱能，即是有額外的 **Heat load**，所以空氣溫度下降得沒那麼快。"
             },
             {
-                img: "投影片8.jpg", 
+                img: "投影片8.JPG", 
                 title: "Example 2.4 - Question",
                 script: "接著是 **Example 2.4** (p.52)，這題關於 **Energy Label** (能源標籤)。\n\n圖片展示了一部 **Grade 1** (一級) 的冷氣機標籤。\n標籤上寫著：\n- **Annual Energy Consumption**: 1630 kW h (Based on 1200 hrs/yr)\n- **Cooling Capacity**: 3.29 kW\n\n題目要求：\n(a) 解釋 **Grade 1 energy label** 的意思。\n(b) 如果每年運作 1050 小時，找出它的 **Annual energy consumption**。\n(c) 計算總電費 (Cost \\$1.1 per kW h)。\n(d) 找出 **Cooling capacity** 和 **COP**。"
             },
             {
-                img: "投影片9.jpg", 
+                img: "投影片9.JPG", 
                 title: "Example 2.4 - Solution",
                 script: "(a) **Grade 1** 代表這部冷氣機的 **Energy efficiency** 是市面上同類產品中最好的 (Among the best)。\n\n(b) 標籤上的數據是基於 1200 小時，但我們只用 1050 小時。所以要按比例計算：\n$$\\text{Consumption} = 1630 \\times \\frac{1050}{1200} = 1430 \\text{ kW h}$$\n\n(c) 電費計算：\n$$\\text{Cost} = 1.1 \\times 1430 = \\$1573$$\n\n(d) **Cooling capacity** 直接從標籤讀取，是 $3.29 \\text{ kW}$。\n要算 **COP**，先找出 **Average input electrical power** ($P_{\\text{in}}$)：\n$$P_{\\text{in}} = \\frac{1630 \\text{ (total energy)}}{1200 \\text{ (hours)}} = 1.358 \\text{ kW}$$\n\n$$\\text{COP} = \\frac{\\text{Cooling capacity}}{\\text{Input electrical power}} = \\frac{3.29}{1.358} \\approx 2.42$$"
             },
             {
-                img: "投影片10.jpg", 
+                img: "投影片10.JPG", 
                 title: "Example 2.5 - Question",
                 script: "最後是 **Example 2.5** (p.53)，這題比較進階，涉及 **Energy consumption index** ($I_{\\epsilon}$)。\n\n表格顯示了不同 Grade 對應的 $I_{\\epsilon}$ 範圍。Grade 1 要求 $I_{\\epsilon} \\le 85\\%$。\n公式：$I_{\\epsilon} = \\frac{E}{E_{\\text{avg}}} \\times 100\\%$\n$E$ 是實際用電量，$E_{\\text{avg}}$ 是同類產品的平均用電量。\n\n題目有兩部分：\n(a) Billy 聲稱某部冷氣機是 Grade 1。已知 $E = 1210$，$E_{\\text{avg}} = 1390$。我們要評論他的說法。\n(b) 某冷氣機的 $I_{\\epsilon}$ 是 89%。如果換一部新機，想節省至少 10% 的 **Energy consumption**，新機的 **Maximum energy consumption index** 應該是多少？"
             },
             {
-                img: "投影片11.jpg", 
+                img: "投影片11.JPG", 
                 title: "Example 2.5 - Solution",
                 script: "(a) 我們先計算這部機的指數：\n$$I_{\\epsilon} = \\frac{1210}{1390} \\times 100\\% = 87\\%$$\n\n查表可知，Grade 1 需要 $\\le 85\\%$。因為 $87\\% > 85\\%$，它是 Grade 2 才對。\n所以，Billy 的說法是 **Incorrect** 的。\n\n(b) 這題要小心邏輯。\n舊機指數是 89%。我們要節省 10% 能量，即是新機的用電量 $E'$ 必須小於或等於舊機用電量 $E$ 的 90% ($E' \\le 0.9E$)。\n\n因為 $I_{\\epsilon}$ 正比於 $E$ (假設 $E_{\\text{avg}}$ 不變)，\n我們可以直接將指數打九折：\n$$I'_{\\epsilon} \\le 0.9 \\times I_{\\epsilon}$$\n$$I'_{\\epsilon} \\le 0.9 \\times 89\\% = 80.1\\%$$\n\n所以，新冷氣機的 **Maximum energy consumption index** 是 80.1%。"
             }
