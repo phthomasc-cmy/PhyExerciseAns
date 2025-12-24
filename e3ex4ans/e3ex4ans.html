@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective 3 Workbook - Ex. 4 Answers</title>
+    
+    <!-- 1. MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <!-- 2. Load MathJax Library -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22; /* Orange accent for Energy topic */
+            --bg-color: #f4f6f7;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .page-indicator {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            height: calc(100vh - 130px);
+        }
+
+        /* Image Panel (Left) */
+        .image-panel {
+            flex: 1;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .image-panel img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        /* Script Panel (Right) */
+        .script-panel {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background-color: white;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            border-left: 1px solid #ddd;
+        }
+
+        .script-panel h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .key-term {
+            color: #d35400;
+            font-weight: bold;
+            background-color: #fadbd8;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* Controls (Bottom) */
+        .controls {
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-top: 1px solid #ddd;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #d35400;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .image-panel {
+                flex: 0 0 40%;
+            }
+            .script-panel {
+                flex: 1;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Elective 3 – Workbook Ex. 4 Answers</h1>
+    <div class="page-indicator">Page <span id="current-page-num">1</span> / <span id="total-pages">15</span></div>
+</header>
+
+<div class="main-container">
+    <div class="image-panel">
+        <!-- Image placeholder -->
+        <img id="slide-image" src="" alt="Course Slide">
+    </div>
+    
+    <div class="script-panel">
+        <div id="script-content">
+            <!-- Content injected via JS -->
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    <button id="prev-btn" onclick="changePage(-1)">&#8592; Previous</button>
+    <button id="next-btn" onclick="changePage(1)">Next &#8594;</button>
+</div>
+
+<script>
+    // ==========================================
+    // DATA CONFIGURATION
+    // Note: All LaTeX backslashes are double-escaped (\\) for JS string compatibility
+    // ==========================================
+    const slides = [
+        {
+            image: "投影片1.JPG", 
+            title: "Introduction",
+            content: `
+                <p>各位同學大家好，今天我們要核對 <strong>Elective 3 Workbook</strong> 中 <strong>Exercise 4</strong> 的答案。</p>
+                <p>這次練習涵蓋了多個能量相關的主題，包括：</p>
+                <ul>
+                    <li><span class="key-term">Nuclear binding energy</span> (核結合能)</li>
+                    <li><span class="key-term">Mass defect</span> (質量虧損) 與核裂變</li>
+                    <li><span class="key-term">Wind power</span> (風力發電)</li>
+                    <li><span class="key-term">Hydroelectric power</span> (水力發電)</li>
+                    <li><span class="key-term">Solar power</span> (太陽能) 與 Lambert's cosine law</li>
+                </ul>
+                <p>請準備好你們的作業和計算機。</p>
+            `
+        },
+        {
+            image: "投影片2.JPG", 
+            title: "Example 4.1: Nuclear Binding Energy (Question)",
+            content: `
+                <p>首先看 <strong>Example 4.1</strong>。</p>
+                <p>題目要求我們計算一顆 Carbon-12 (C-12) 原子的 <span class="key-term">Nuclear binding energy</span>。</p>
+                <p>已知數據：</p>
+                <ul>
+                    <li>質子質量 (<span class="key-term">Mass of proton</span>) = 1.0073 u</li>
+                    <li>中子質量 (<span class="key-term">Mass of neutron</span>) = 1.0087 u</li>
+                    <li>C-12 原子的質量定義為 12 u</li>
+                </ul>
+                <p>解題關鍵在於找出個別核子 (nucleons) 加起來的質量與原子核實際質量的差值，也就是 <span class="key-term">Mass defect</span>。</p>
+            `
+        },
+        {
+            image: "投影片3.JPG", 
+            title: "Example 4.1: Nuclear Binding Energy (Answer)",
+            content: `
+                <p>讓我們來看看計算過程。</p>
+                <p>1. 找出核子的組成：C-12 有 6 個質子和 6 個中子。</p>
+                <p>2. 計算 <span class="key-term">Mass defect</span> (質量虧損)：
+                $$ \\text{Defect} = [6(1.0073) + 6(1.0087)] - 12 $$
+                $$ = 6(2.016) - 12 = 0.096 \\text{ u} $$
+                </p>
+                <p>3. 將質量單位 u 轉換為能量單位 MeV。
+                <br>記得轉換因子：$1 \\text{ u} = 931 \\text{ MeV}$。
+                $$ \\text{Binding Energy} = 0.096 \\times 931 = 89.4 \\text{ MeV} $$
+                </p>
+            `
+        },
+        {
+            image: "投影片4.JPG", 
+            title: "Example 4.2: Fission Energy (Question)",
+            content: `
+                <p>接下來是 <strong>Example 4.2</strong>，關於核裂變 (<span class="key-term">Fission reaction</span>)。</p>
+                <p>題目給出了一個鈾-235 (U-235) 被中子撞擊後分裂成 La-148 和 Br-85 的反應式：
+                $$ ^{235}_{92}\\text{U} + ^{1}_{0}\\text{n} \\rightarrow ^{148}_{57}\\text{La} + ^{85}_{35}\\text{Br} + 3\\,^{1}_{0}\\text{n} $$
+                </p>
+                <p>問題是：如果有 5g 的 U-235 發生這個反應，釋放的總能量是多少？</p>
+                <p>我們需要分兩步走：先算單次反應釋放的能量，再算出 5g 當中有多少顆原子。</p>
+            `
+        },
+        {
+            image: "投影片5.JPG", 
+            title: "Example 4.2: Fission Energy (Answer)",
+            content: `
+                <p><strong>第一步：計算單次反應的 Mass defect</strong></p>
+                <p>反應前質量 ($m_{\\text{reactants}}$) - 反應後質量 ($m_{\\text{products}}$)：
+                $$ \\Delta m = (234.9934 + 1.0087) - (147.9009 + 84.8964 + 3 \\times 1.0087) $$
+                $$ \\Delta m = 0.1787 \\text{ u} $$
+                </p>
+                <p><strong>第二步：計算總能量</strong></p>
+                <p>5g 的 U-235 有多少原子？
+                $$ N = \\frac{0.005 \\text{ kg}}{\\text{Mass of one atom}} = \\frac{0.005}{234.9934 \\times 1.661 \\times 10^{-27}} $$
+                </p>
+                <p>總能量 = 原子數量 $\\times$ 每個反應的能量 ($0.1787 \\times 931$)：
+                $$ E \\approx 2.13 \\times 10^{24} \\text{ MeV} $$
+                </p>
+                <p>(注意：分母的 U-235 原子質量需要換算成 kg 才能與分子的 0.005 kg 單位一致)</p>
+            `
+        },
+        {
+            image: "投影片6.JPG", 
+            title: "Example 4.3: Wind Turbine (Question)",
+            content: `
+                <p>來到 <strong>Example 4.3</strong>，這題考的是風力發電 (<span class="key-term">Wind turbine</span>)。</p>
+                <p>已知數據：</p>
+                <ul>
+                    <li>風速 ($v$) = $6 \\text{ m s}^{-1}$</li>
+                    <li>葉片長度 (半徑 $r$) = 5.5 m</li>
+                    <li>空氣密度 ($\\rho$) = $1.3 \\text{ kg m}^{-3}$</li>
+                </ul>
+                <p>(a) 計算風力發電機可產生的 <span class="key-term">Maximum power</span>。</p>
+                <p>(b) 如果實際輸出功率 ($P_{\\text{out}}$) 是 3736 W，求 <span class="key-term">Efficiency</span>。</p>
+            `
+        },
+        {
+            image: "投影片7.JPG", 
+            title: "Example 4.3: Wind Turbine (Answer)",
+            content: `
+                <p>(a) 首先計算掃掠面積 (<span class="key-term">Area</span>)：
+                $$ A = \\pi r^2 = \\pi (5.5)^2 \\approx 95.03 \\text{ m}^2 $$
+                代入最大功率公式：
+                $$ P_{\\text{max}} = \\frac{1}{2}\\rho A v^3 $$
+                $$ P_{\\text{max}} = 0.5 \\times 1.3 \\times 95.03 \\times 6^3 \\approx 13342 \\text{ W} $$
+                取三位有效數字：$13300 \\text{ W}$。
+                </p>
+                <p>(b) 計算效率：
+                $$ \\eta = \\frac{P_{\\text{out}}}{P_{\\text{in}}} \\times 100\\% $$
+                $$ \\eta = \\frac{3736}{13342} \\approx 0.28 $$
+                所以效率是 <strong>28%</strong>。
+                </p>
+            `
+        },
+        {
+            image: "投影片8.JPG", 
+            title: "Example 4.4: Hydroelectric Power (Question)",
+            content: `
+                <p><strong>Example 4.4</strong> 是關於水力發電 (<span class="key-term">Hydroelectric power plant</span>)。</p>
+                <p>已知條件：</p>
+                <ul>
+                    <li>高度差 ($h$) = 110 m</li>
+                    <li>轉換效率 ($\\eta$) = 62%</li>
+                    <li>輸出功率 ($P_{\\text{out}}$) = 175 MW ($175 \\times 10^6 \\text{ W}$)</li>
+                    <li>水的密度 ($\\rho$) = $1000 \\text{ kg m}^{-3}$</li>
+                </ul>
+                <p>題目要求我們求出通過渦輪機的水流速率 (<span class="key-term">Water flow rate</span>)，也就是每秒流過多少體積的水 ($m^3 s^{-1}$)。</p>
+            `
+        },
+        {
+            image: "投影片9.JPG", 
+            title: "Example 4.4: Hydroelectric Power (Answer)",
+            content: `
+                <p>設水流速率為 $x \\text{ m}^3 \\text{s}^{-1}$。</p>
+                <p>每秒流過的水質量 $m = \\text{Density} \\times \\text{Volume} = 1000x \\text{ kg}$。</p>
+                <p>水的重力位能損失率 (PE loss per second)：
+                $$ P_{\\text{in}} = mgh = (1000x)(9.81)(110) = 1,079,100x \\text{ W} $$
+                </p>
+                <p>利用效率公式 $P_{\\text{out}} = \\eta P_{\\text{in}}$：
+                $$ 175 \\times 10^6 = 0.62 \\times (1,079,100x) $$
+                解 $x$：
+                $$ x = \\frac{175 \\times 10^6}{0.62 \\times 1079100} \\approx 262 \\text{ m}^3 \\text{s}^{-1} $$
+                </p>
+            `
+        },
+        {
+            image: "投影片10.JPG", 
+            title: "Example 4.5: Solar Energy - Venus (Question)",
+            content: `
+                <p>接著看 <strong>Example 4.5</strong>。</p>
+                <p>題目關於金星 (Venus) 吸收的太陽能。</p>
+                <ul>
+                    <li>反射率：60% (Reflects 60%) $\\rightarrow$ 代表吸收率是 40%。</li>
+                    <li>金星半徑 ($r$) = 6050 km = $6.05 \\times 10^6$ m。</li>
+                    <li>金星位置的太陽輻射功率 (<span class="key-term">Solar radiation power per unit area</span>) = $2610 \\text{ W m}^{-2}$。</li>
+                </ul>
+                <p>估算金星每秒吸收的平均太陽能。</p>
+            `
+        },
+        {
+            image: "投影片11.JPG", 
+            title: "Example 4.5: Solar Energy - Venus (Answer)",
+            content: `
+                <p>計算吸收的功率 ($P_{\\text{absorbed}}$)。</p>
+                <p>這裡要注意攔截太陽光的面積是金星的<strong>圓盤投影面積</strong> ($\\,\\pi r^2\\,$)，而不是球表面積。</p>
+                <p>吸收係數 = $1 - 0.6 = 0.4$。</p>
+                $$ P = (1 - 0.6) \\times S \\times \\pi r^2 $$
+                $$ P = 0.4 \\times 2610 \\times \\pi \\times (6050 \\times 10^3)^2 $$
+                $$ P \\approx 1.20 \\times 10^{17} \\text{ W} $$
+                <p>因為 1 Watt = 1 Joule/sec，所以答案是 $1.20 \\times 10^{17} \\text{ J}$ 每秒。</p>
+            `
+        },
+        {
+            image: "投影片12.JPG", 
+            title: "Example 4.6: Atmosphere Absorption (Question)",
+            content: `
+                <p><strong>Example 4.6</strong> 是一個實驗題。</p>
+                <p>James 在地面測量太陽輻射。</p>
+                <ul>
+                    <li>儀器讀數 = $550 \\text{ W m}^{-2}$ (這是實際接收到的)。</li>
+                    <li>陽光入射角 = 與水平面成 $50^{\\circ}$ (Angle of $50^{\\circ}$ to the horizontal)。</li>
+                    <li><span class="key-term">Solar constant</span> (大氣層頂端) = $1360 \\text{ W m}^{-2}$。</li>
+                </ul>
+                <p>求被大氣層吸收或反射的百分比。</p>
+            `
+        },
+        {
+            image: "投影片13.JPG", 
+            title: "Example 4.6: Atmosphere Absorption (Answer)",
+            content: `
+                <p>首先，我們需要還原如果沒有大氣層損耗，根據 <span class="key-term">Lambert's cosine law</span>，地面應該收到多少輻射。</p>
+                <p>注意角度：題目給的是與水平面的夾角 $50^{\\circ}$。如果是與法線 (Normal) 的夾角則是 $90^{\\circ}-50^{\\circ}$。</p>
+                <p>根據截圖算式，這裡計算的是如果陽光垂直照射時的等效強度，或者是反推大氣層外的強度對應：
+                $$ \\text{Expected} = \\frac{550}{\\cos(90^{\\circ} - 50^{\\circ})} = \\frac{550}{\\sin 50^{\\circ}} \\approx 718.0 \\text{ W m}^{-2} $$
+                (註：這裡算式的物理意義是，如果沒有大氣損耗，以此角度入射，原本應有的強度比例。或者可以直接比較功率：$1360 \\times \\sin(50^{\\circ})$ vs $550$)</p>
+                
+                <p>讓我們照著書上的邏輯：
+                <br>實際上收到的 $718$ (標準化後) 與 $1360$ 的差距就是損耗。</p>
+                $$ \\text{Percentage} = \\frac{1360 - 718.0}{1360} \\times 100\\% = 47.2\\% $$
+                `
+        },
+        {
+            image: "投影片14.JPG", 
+            title: "Example 4.7: Solar Panels (Question)",
+            content: `
+                <p>最後是 <strong>Example 4.7</strong>。</p>
+                <p>Helen 使用太陽能板來驅動一個額定功率 1200 W 的熱水器。</p>
+                <ul>
+                    <li>每塊板面積 = $2 \\text{ m}^2$。</li>
+                    <li>轉換效率 = 25%。</li>
+                    <li>陽光強度 = $550 \\text{ W m}^{-2}$。</li>
+                    <li>入射角 = $60^{\\circ}$ (falls on the panel at an angle of $60^{\\circ}$)。通常指與法線夾角。</li>
+                </ul>
+                <p>(a) 計算每塊板的電力輸出。<br>
+                (b) 計算 3 小時產生的能量。<br>
+                (c) 需要幾塊板才能驅動熱水器？</p>
+            `
+        },
+        {
+            image: "投影片15.JPG", 
+            title: "Example 4.7: Solar Panels (Answer)",
+            content: `
+                <p>(a) 輸出功率 ($P_{\\text{out}}$)：
+                <br>公式：$P = I \\times A \\times \\cos\\theta \\times \\eta$
+                $$ P = 550 \\times 2 \\times \\cos 60^{\\circ} \\times 0.25 $$
+                $$ P = 137.5 \\text{ W} $$
+                </p>
+                <p>(b) 3 小時產生的能量：
+                $$ E = P \\times t = 137.5 \\times (3 \\times 3600) $$
+                $$ E = 1,485,000 \\text{ J} = 1.485 \\text{ MJ} $$
+                </p>
+                <p>(c) 所需太陽能板數量：
+                $$ \\text{Number} = \\frac{\\text{Target Power}}{\\text{Power per panel}} = \\frac{1200}{137.5} \\approx 8.73 $$
+                因為板子必須是整數，且要足夠驅動，所以必須進位到 <strong>9</strong> 塊。</p>
+            `
+        }
+    ];
+
+    // ==========================================
+    // LOGIC
+    // ==========================================
+    let currentPage = 0;
+    const totalPages = slides.length;
+
+    // DOM Elements
+    const imgElement = document.getElementById('slide-image');
+    const contentElement = document.getElementById('script-content');
+    const pageNumDisplay = document.getElementById('current-page-num');
+    const totalPagesDisplay = document.getElementById('total-pages');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    // Initialize
+    totalPagesDisplay.textContent = totalPages;
+
+    function updatePage() {
+        // Update Content
+        const slide = slides[currentPage];
+        
+        // 1. Update Image
+        imgElement.src = slide.image;
+        imgElement.onerror = function() {
+            // Fallback if user hasn't saved images yet
+            this.src = "https://via.placeholder.com/800x600?text=Image+Not+Found+(Check+File+Name)";
+        }
+
+        // 2. Update Script
+        let htmlContent = `<h2>${slide.title}</h2>` + slide.content;
+        contentElement.innerHTML = htmlContent;
+
+        // 3. Update Controls
+        pageNumDisplay.textContent = currentPage + 1;
+        prevBtn.disabled = (currentPage === 0);
+        nextBtn.disabled = (currentPage === totalPages - 1);
+
+        // 4. Trigger MathJax Render
+        if (window.MathJax) {
+            MathJax.typesetPromise([contentElement]).then(() => {
+                // Formula rendered successfully
+            }).catch((err) => console.error('MathJax error:', err));
+        }
+    }
+
+    function changePage(delta) {
+        const newPage = currentPage + delta;
+        if (newPage >= 0 && newPage < totalPages) {
+            currentPage = newPage;
+            updatePage();
+        }
+    }
+
+    // Load first page
+    updatePage();
+
+</script>
+
+</body>
+</html>
