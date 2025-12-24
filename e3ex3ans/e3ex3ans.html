@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective 3 Workbook - Ex. 3 Answers</title>
+    
+    <!-- 1. MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <!-- 2. Load MathJax Library -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #2980b9;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .page-indicator {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            height: calc(100vh - 130px); /* Adjust for header and controls */
+        }
+
+        /* Image Panel (Left) */
+        .image-panel {
+            flex: 1; /* Takes 50% width by default */
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .image-panel img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        /* Script Panel (Right) */
+        .script-panel {
+            flex: 1; /* Takes 50% width by default */
+            padding: 40px;
+            overflow-y: auto;
+            background-color: white;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            border-left: 1px solid #ddd;
+        }
+
+        .script-panel h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .key-term {
+            color: #c0392b;
+            font-weight: bold;
+            background-color: #f9e79f;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* Controls (Bottom) */
+        .controls {
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-top: 1px solid #ddd;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #1abc9c;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .image-panel {
+                flex: 0 0 40%;
+            }
+            .script-panel {
+                flex: 1;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Elective 3 – Workbook Answers</h1>
+    <div class="page-indicator">Page <span id="current-page-num">1</span> / <span id="total-pages">11</span></div>
+</header>
+
+<div class="main-container">
+    <div class="image-panel">
+        <!-- Image placeholder -->
+        <img id="slide-image" src="" alt="Course Slide">
+    </div>
+    
+    <div class="script-panel">
+        <div id="script-content">
+            <!-- Content injected via JS -->
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    <button id="prev-btn" onclick="changePage(-1)">&#8592; Previous</button>
+    <button id="next-btn" onclick="changePage(1)">Next &#8594;</button>
+</div>
+
+<script>
+    // ==========================================
+    // DATA CONFIGURATION
+    // Note: All LaTeX backslashes are double-escaped (\\) for JS string compatibility
+    // ==========================================
+    const slides = [
+        {
+            image: "投影片1.JPG", 
+            title: "Intro: Exercise 3 Answers",
+            content: `
+                <p>各位同學大家好，歡迎來到 <strong>Elective 3 – Workbook</strong> 的解題環節。</p>
+                <p>今天我們要核對的是 <strong>Exercise 3</strong> 的答案。這一章的重點主要集中在熱傳導 (Heat Conduction)、<strong>U-value</strong> 的應用，以及建築物的 <strong>OTTV</strong> (Overall Thermal Transfer Value) 計算。</p>
+                <p>請大家準備好課本和計算機，我們開始吧。</p>
+            `
+        },
+        {
+            image: "投影片2.JPG", 
+            title: "Example 3.1: Thermograph Analysis (Question)",
+            content: `
+                <p>首先看 <strong>Example 3.1</strong>。這題給了我們一張房子在寒冷冬天的 <strong>Thermograph</strong>（熱成像圖）。</p>
+                <p>(a) 題目問為什麼窗戶看起來比其他部分更紅 (Redder)？大家要記得熱成像圖的原理：顏色越紅代表什麼？沒錯，代表溫度較高。</p>
+                <p>(b) 題目給了一個條件：牆壁的 <strong>U-value</strong> 大於屋頂的 <strong>U-value</strong>。</p>
+                <ul>
+                    <li>(i) 我們需要判斷哪一部分在熱成像圖中看起來比較藍 (Bluer)？</li>
+                    <li>(ii) 哪一部分傳導熱 (Conducts heat) 的能力更好？</li>
+                </ul>
+                <p>請思考一下 <strong>U-value</strong> 與隔熱能力及表面溫度的關係。</p>
+            `
+        },
+        {
+            image: "投影片3.JPG", 
+            title: "Example 3.1: Thermograph Analysis (Answer)",
+            content: `
+                <p>讓我們來看看答案：</p>
+                <p>(a) 窗戶呈現紅色，是因為窗戶透過 <span class="key-term">Radiation</span> (輻射) 散失了更多的熱量。室內溫度高，窗戶隔熱差，表面溫度高，所以輻射強，看起來就紅。</p>
+                <p>(b)(i) 答案是 <strong>The roof</strong>。為什麼？因為牆壁的 <strong>U-value</strong> 較大（隔熱差），表面溫度高（紅）；反之，屋頂 <strong>U-value</strong> 小（隔熱好），外部表面溫度低，所以看起來比較藍。</p>
+                <p>(b)(ii) 答案是 <strong>The walls</strong>。因為 <span class="key-term">U-value</span> 本質上就是衡量熱流率的指標。<strong>U-value</strong> 越大，代表導熱能力越好 (Conducts heat better)。</p>
+            `
+        },
+        {
+            image: "投影片4.JPG", 
+            title: "Example 3.2: U-value Calculation (Question)",
+            content: `
+                <p>接著是 <strong>Example 3.2</strong>，這是一道計算題。</p>
+                <p>Ann 想要找出一面混凝土牆的 <strong>U-value</strong>。已知數據如下：</p>
+                <ul>
+                    <li>Thickness ($d$) = 20 cm (注意單位換算！)</li>
+                    <li>Temperature difference ($\\Delta T$) = 9 $^\\circ$C</li>
+                    <li><span class="key-term">Thermal conductivity</span> ($k$) = $1.1 \\text{ W m}^{-1} \\text{K}^{-1}$</li>
+                </ul>
+                <p>(a) 計算牆壁的 <strong>U-value</strong> 以及每單位面積的 <strong>Rate of heat flow</strong>。</p>
+                <p>(b) 這是一個概念題：如果你要加裝隔熱層 (<span class="key-term">Thermal insulator</span>)，這個材料應該具有高的還是低的 <span class="key-term">Thermal conductivity</span>？</p>
+            `
+        },
+        {
+            image: "投影片5.JPG", 
+            title: "Example 3.2: U-value Calculation (Answer)",
+            content: `
+                <p>我們來核對計算過程：</p>
+                <p>(a) 首先計算 <strong>U-value</strong>。公式是 $U = \\frac{\\kappa}{d}$。</p>
+                $$ U = \\frac{1.1}{0.2} = 5.5 \\text{ W m}^{-2} \\text{K}^{-1} $$
+                <p>注意：厚度 20 cm 必須換算成 <strong>0.2 m</strong>。</p>
+                <p>接著計算單位面積的熱流率 (Rate of heat flow per unit area)：</p>
+                $$ \\frac{P}{A} = U \\Delta T = 5.5 \\times 9 = 49.5 \\text{ W m}^{-2} $$
+                <p>(b) 答案是 <strong>Low thermal conductivity</strong>。因為絕緣體的作用是阻擋熱傳遞，導熱係數 ($k$) 越低，隔熱效果越好。</p>
+            `
+        },
+        {
+            image: "投影片6.JPG", 
+            title: "Example 3.3: OTTV Estimation (Question)",
+            content: `
+                <p>來到 <strong>Example 3.3</strong>，這題要估算一棟建築物的 <span class="key-term">OTTV</span>。</p>
+                <p>建築物尺寸：長 10m、寬 8m、高 2.5m。有 3 扇窗戶，每扇 $3 \\text{ m} \\times 1 \\text{ m}$。</p>
+                <p>已知條件：</p>
+                <ul>
+                    <li>窗戶的平均 <span class="key-term">Radiation heat gain</span> = $400 \\text{ W m}^{-2}$</li>
+                    <li>牆壁和屋頂的 <strong>U-value</strong> = $13 \\text{ W m}^{-2} \\text{K}^{-1}$</li>
+                    <li>溫差：室外 30$^\\circ$C - 室內 27$^\\circ$C = 3$^\\circ$C</li>
+                </ul>
+                <p>(a) 估算這棟樓的 OTTV。<br>(b) 列出計算時的一個假設。</p>
+            `
+        },
+        {
+            image: "投影片7.JPG", 
+            title: "Example 3.3: OTTV Estimation (Answer)",
+            content: `
+                <p>(a) OTTV 的計算邏輯是：<strong>總熱增益 (Total Power Gain) / 總表面積 (Total Surface Area)</strong>。</p>
+                <p><strong>Step 1: 計算不透光部分 (Wall + Roof) 的面積</strong><br>
+                總外表面積 (扣除窗戶前) = $(10 \\times 2.5 \\times 2) + (8 \\times 2.5 \\times 2) + (10 \\times 8) = 170 \\text{ m}^2$。<br>
+                扣除 3 扇窗戶面積 ($3 \\times 1 \\times 3 = 9 \\text{ m}^2$)，剩下 $161 \\text{ m}^2$。</p>
+                
+                <p><strong>Step 2: 計算 Conduction Heat Gain</strong><br>
+                $$ P_{cond} = U \\times A \\times \\Delta T = 13 \\times 161 \\times (30-27) = 6279 \\text{ W} $$</p>
+
+                <p><strong>Step 3: 計算 Radiation Heat Gain (Windows)</strong><br>
+                $$ P_{rad} = \\text{Area} \\times \\text{Rate} = 9 \\times 400 = 3600 \\text{ W} $$
+                總熱功率 = $6279 + 3600 = 9879 \\text{ W}$。</p>
+
+                <p><strong>Step 4: 計算 OTTV</strong><br>
+                $$ \\text{OTTV} = \\frac{9879}{170} \\approx 58.1 \\text{ W m}^{-2} $$
+                (注意分母要用建築物的<strong>總外殼面積</strong> 170，而不是扣除窗戶後的面積)。</p>
+
+                <p>(b) 假設可以是：室內溫度分佈均勻 (Uniform)，或者忽略了窗戶的熱傳導 (Heat conduction of window is neglected)。</p>
+            `
+        },
+        {
+            image: "投影片8.JPG", 
+            title: "Example 3.4: Comparison & Cost (Question)",
+            content: `
+                <p><strong>Example 3.4</strong> 使用表格數據來分析。</p>
+                <p>表格列出了 Wall, Roof, Window 的平均熱增益率 (kW) 和面積。</p>
+                <ul>
+                    <li>(a) 求房子的 <span class="key-term">OTTV</span>。</li>
+                    <li>(b) 這裡引入了冷氣機的效率指標 <span class="key-term">COP</span> (Coefficient of Performance) 為 3.2。每天運作 9 小時，電費 $1.2/kWh。求一個月的電費。</li>
+                    <li>(c) 思考題：如果把部分窗戶改成牆壁，冷氣電費會增加還是減少？</li>
+                </ul>
+            `
+        },
+        {
+            image: "投影片9.JPG", 
+            title: "Example 3.4: Comparison & Cost (Answer)",
+            content: `
+                <p>(a) 計算 OTTV：<br>
+                總熱增益 = $3200 + 2000 + 4100 = 9300 \\text{ W}$。<br>
+                總面積 = $88 + 78 + 7 = 173 \\text{ m}^2$。<br>
+                $$ \\text{OTTV} = \\frac{9300}{173} = 53.8 \\text{ W m}^{-2} $$</p>
+
+                <p>(b) 計算電費：<br>
+                首先計算冷氣機的輸入功率 (Power Input)：
+                $$ P_{in} = \\frac{\\text{Cooling Capacity}}{\\text{COP}} = \\frac{9300 \\text{ W}}{3.2} \\approx 2.906 \\text{ kW} $$
+                接著算能量消耗與費用：
+                $$ \\text{Cost} = 2.906 \\times (9 \\times 30) \\times 1.2 = \\$942 $$</p>
+
+                <p>(c) 答案是 <strong>Decreases</strong> (減少)。<br>
+                雖然牆壁面積增加，但窗戶單位面積的熱增益 (尤其是輻射) 遠高於牆壁的傳導。減少窗戶面積通常會顯著降低總熱負載。</p>
+            `
+        },
+        {
+            image: "投影片10.JPG", 
+            title: "Example 3.5: Electric Vehicle (Question)",
+            content: `
+                <p>最後我們來看 <strong>Example 3.5</strong>，這題關於電動車的 <span class="key-term">Regenerative braking system</span> (再生制動系統)。</p>
+                <p>已知條件：</p>
+                <ul>
+                    <li>車重 (Mass) = 2800 kg</li>
+                    <li>鋰電池能量密度 = $0.4 \\text{ MJ kg}^{-1}$</li>
+                </ul>
+                <p>(a) 電池重 180 kg，求電池的 <span class="key-term">Maximum capacity</span>。</p>
+                <p>(b) 車速 $18 \\text{ m s}^{-1}$。煞車時，30% 的動能 (<span class="key-term">Kinetic Energy</span>) 會轉換回化學能儲存在電池中。求回收了多少能量？</p>
+            `
+        },
+        {
+            image: "投影片11.JPG", 
+            title: "Example 3.5: Electric Vehicle (Answer)",
+            content: `
+                <p>(a) 計算電池容量：<br>
+                $$ \\text{Capacity} = \\text{Mass} \\times \\text{Energy Density} $$
+                $$ = 180 \\times 0.4 = 72 \\text{ MJ} $$</p>
+
+                <p>(b) 計算回收能量：<br>
+                首先計算車子的初始動能 (Kinetic Energy)：
+                $$ KE = \\frac{1}{2}mv^2 = \\frac{1}{2}(2800)(18^2) = 453,600 \\text{ J} $$
+                
+                接著計算 30% 的回收量：
+                $$ E_{stored} = 453,600 \\times 0.3 = 1.36 \\times 10^5 \\text{ J} $$
+                
+                <p>這題要注意單位：第一部分結果是 MJ，第二部分結果通常用 J 表示。</p>
+                <p>這就是 Exercise 3 的所有解答。請大家確保訂正完成！</p>
+            `
+        }
+    ];
+
+    // ==========================================
+    // LOGIC
+    // ==========================================
+    let currentPage = 0;
+    const totalPages = slides.length;
+
+    // DOM Elements
+    const imgElement = document.getElementById('slide-image');
+    const contentElement = document.getElementById('script-content');
+    const pageNumDisplay = document.getElementById('current-page-num');
+    const totalPagesDisplay = document.getElementById('total-pages');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    // Initialize
+    totalPagesDisplay.textContent = totalPages;
+
+    function updatePage() {
+        // Update Content
+        const slide = slides[currentPage];
+        
+        // 1. Update Image
+        imgElement.src = slide.image;
+        imgElement.onerror = function() {
+            // Fallback if user hasn't saved images yet
+            this.src = "https://via.placeholder.com/800x600?text=Image+Not+Found+(Check+File+Name)";
+        }
+
+        // 2. Update Script
+        let htmlContent = `<h2>${slide.title}</h2>` + slide.content;
+        contentElement.innerHTML = htmlContent;
+
+        // 3. Update Controls
+        pageNumDisplay.textContent = currentPage + 1;
+        prevBtn.disabled = (currentPage === 0);
+        nextBtn.disabled = (currentPage === totalPages - 1);
+
+        // 4. Trigger MathJax Render
+        if (window.MathJax) {
+            MathJax.typesetPromise([contentElement]).then(() => {
+                // Formula rendered successfully
+            }).catch((err) => console.error('MathJax error:', err));
+        }
+    }
+
+    function changePage(delta) {
+        const newPage = currentPage + delta;
+        if (newPage >= 0 && newPage < totalPages) {
+            currentPage = newPage;
+            updatePage();
+        }
+    }
+
+    // Load first page
+    updatePage();
+
+</script>
+
+</body>
+</html>
